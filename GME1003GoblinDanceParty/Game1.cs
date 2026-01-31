@@ -19,11 +19,12 @@ namespace GME1003GoblinDanceParty
         private List<float> _RotationList;
         private List<float> _TransparencyList;
         private List<float> _SizeList;
+        private List<Color> _ColorList;
 
         private Texture2D _starSprite;  //the sprite image for our star
 
         private Random _rng;            //for all our random number needs
-        private Color _starColor;       //let's have fun with colour!!
+        //private Color _starColor;       //let's have fun with colour!!
         //private float _starScale;       //star size
         //private float _starTransparency;//star transparency
         //private float _starRotation;    //star rotation
@@ -50,8 +51,9 @@ namespace GME1003GoblinDanceParty
             _RotationList = new List<float>();
             _TransparencyList = new List<float>();
             _SizeList = new List<float>();
+            _ColorList = new List<Color>();
 
-            _starColor = new Color(128 + _rng.Next(0,129), 128 + _rng.Next(0, 129), 128 + _rng.Next(0, 129));                   //this is a "relatively" easy way to create random colors
+            //_starColor = new Color(128 + _rng.Next(0,129), 128 + _rng.Next(0, 129), 128 + _rng.Next(0, 129));                   //this is a "relatively" easy way to create random colors
             //_starScale = _rng.Next(50, 100) / 200f; //this will affect the size of the stars
             //_starTransparency = _rng.Next(25, 101)/100f;   //star transparency
             //_starRotation = _rng.Next(0, 101) / 100f;       //star rotation
@@ -86,6 +88,13 @@ namespace GME1003GoblinDanceParty
             {
                 _SizeList.Add(_rng.Next(50, 100) / 200f); //all stars have random size
             }
+
+            for (int i = 0; i < _numStars; i++)
+            {
+                _ColorList.Add(new Color(128 + _rng.Next(0, 129), 128 + _rng.Next(0, 129), 128 + _rng.Next(0, 129))); //all stars have random colors
+            }
+
+
 
             //ToDo: List of Colors
 
@@ -144,7 +153,7 @@ namespace GME1003GoblinDanceParty
                 _spriteBatch.Draw(_starSprite, 
                     new Vector2(_starsX[i], _starsY[i]),    //set the star position
                     null,                                   //ignore this
-                    _starColor * _TransparencyList[i],         //set colour and transparency
+                    _ColorList[i] * _TransparencyList[i],         //set colour and transparency
                     _RotationList[i],                          //set rotation
                     new Vector2(_starSprite.Width / 2, _starSprite.Height / 2), //ignore this
                     new Vector2(_SizeList[i], _SizeList[i]),    //set scale (same number 2x)
