@@ -21,7 +21,8 @@ namespace GME1003GoblinDanceParty
         private List<float> _SizeList;
         private List<Color> _ColorList;
 
-        private Texture2D _starSprite;  //the sprite image for our star
+        private Texture2D _starSprite;  //the sprite image for our star or fry guy
+        private Texture2D _background;  
 
         private Random _rng;            //for all our random number needs
         //private Color _starColor;       //let's have fun with colour!!
@@ -113,8 +114,8 @@ namespace GME1003GoblinDanceParty
             _spriteBatch = new SpriteBatch(GraphicsDevice);
 
             //load out star sprite
-            _starSprite = Content.Load<Texture2D>("starSprite");
-
+            _starSprite = Content.Load<Texture2D>("fry fighter");
+            _background = Content.Load<Texture2D>("hampter");
 
             //***This is for the goblin. Ignore it for now.
             goblin = new Goblin(Content.Load<Texture2D>("goblinIdleSpriteSheet"), 400, 400);
@@ -144,9 +145,10 @@ namespace GME1003GoblinDanceParty
             
             _spriteBatch.Begin();
 
-            //it would be great to have a background image here! 
-            //you could make that happen with a single Draw statement.
-
+        //it would be great to have a background image here! 
+        //you could make that happen with a single Draw statement.
+        
+            _spriteBatch.Draw(_background, new Rectangle(0, 0, 800, 480), Color.White);
             //this is where we draw the stars...
             for (int i = 0; i < _numStars; i++) 
             {
